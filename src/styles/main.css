@@ -1,0 +1,10 @@
+@import '../App.css';
+@import '../pages/Main/MainPage.css';
+@import '../components/CardsList/CardList.css';
+@import '../components/CardItem/CardItem.css';
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: overlay;
+}
