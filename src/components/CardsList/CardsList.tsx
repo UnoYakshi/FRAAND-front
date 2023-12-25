@@ -4,6 +4,7 @@ function CardsList() {
     return(
         <div className="cards-list">
             <CardItem/>
+            <CardItem/>
         </div>
     )
 }
