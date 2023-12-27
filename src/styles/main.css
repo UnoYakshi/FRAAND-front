@@ -1,9 +1,16 @@
+@import './fonts.css';
 @import '../App.css';
 @import '../pages/Main/MainPage.css';
 @import '../components/CardsList/CardList.css';
 @import '../components/CardItem/CardItem.css';
 @import '../components/Header/HeaderComponent.css';
 
+
+:root {
+	--page-bg-color: #1F202E;
+	--purple: #413C56;
+	--light-purple: #594D87;
+}
 
 * {
 	margin: 0;
@@ -21,6 +28,16 @@ ul,
 ol,
 figure {
 	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'WorkSansBold', sans-serif;
+	font-weight: 600;
 }
 
 ul {

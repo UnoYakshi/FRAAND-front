@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'WorkSansLight';
+    src: url('fonts/WorkSans-Light.woff') format('woff');
+    font-weight: 300; /* жирность шрифта: легкий */
+}
+  
+@font-face {
+    font-family: 'WorkSansRegular';
+    src: url('fonts/WorkSans-Regular.woff') format('woff');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'WorkSansMedium';
+    src: url('fonts/WorkSans-Medium.woff') format('woff');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'WorkSansBold';
+    src: url('fonts/WorkSans-Bold.woff') format('woff');
+    font-weight: 600;
+}
+  
