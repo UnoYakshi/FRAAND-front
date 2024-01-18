@@ -59,9 +59,58 @@
     }
   
 .card__imgs {
-        width: 20%;
+        position: relative;
+        width: 23%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
+  
+.card__imgs_carousel {
+            width: 84%;
+            height: 100%;
+        }
+  
+.card__imgs_carousel div {
+            width: 100%;
+            height: 100%;
+        }
+  
+.card__imgs_btns {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+  
+.card__imgs_prev {
+            height: 15px;
+            width: 15px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+  
+.card__imgs_next {
+            height: 15px;
+            width: 15px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
   
 .card__img {
         width: 100%;

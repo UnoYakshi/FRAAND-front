@@ -1,11 +1,26 @@
 import carImg from '../../img/card-img.jpeg';
+import ReactSwipe from 'react-swipe';
 
 function CardItem() {
+    let reactSwipeEl: any;
     return(
         <div className="card">
             <div className="card__container">
                 <div className="card__imgs">
-                    <img src={carImg} className='card__img' alt="item photo"/>
+                     <ReactSwipe
+                        className="card__imgs_carousel"
+                        swipeOptions={{ continuous: false }}
+                        ref={el => (reactSwipeEl = el)}
+                    >
+                        <img src={carImg} className='card__img' alt="item photo"/>
+                         <img src={carImg} className='card__img' alt="item photo"/>
+                         <img src={carImg} className='card__img' alt="item photo"/>
+                    </ReactSwipe>
+                    <div className="card__imgs_btns">
+                        <button className='card__imgs_btn card__imgs_prev' onClick={() => reactSwipeEl.prev()}></button>
+                        <button className='card__imgs_btn card__imgs_next' onClick={() => reactSwipeEl.next()}></button>
+                    </div>
+                    {/* <img src={carImg} className='card__img' alt="item photo"/> */}
                 </div>
                 <div className="card__middle">
                     <div className="card__texts">
