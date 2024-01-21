@@ -136,6 +136,7 @@
 .card__desc {
         width: 100%;
         font-size: 1.1vw;
+        height: 18vh;
         overflow: hidden;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 8;

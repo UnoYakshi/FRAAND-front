@@ -1,10 +1,18 @@
 import carImg from '../../img/card-img.jpeg';
 import ReactSwipe from 'react-swipe';
 
-function CardItem() {
+interface CardItemProps {
+    name: string;
+    description: string;
+    // Add other properties as needed
+  }
+
+function CardItem(props: CardItemProps) {
+    const { name } = props;
+    const {description} = props;
     let reactSwipeEl: any;
     return(
-        <div className="card">
+        <li className="card">
             <div className="card__container">
                 <div className="card__imgs">
                      <ReactSwipe
@@ -24,10 +32,9 @@ function CardItem() {
                 </div>
                 <div className="card__middle">
                     <div className="card__texts">
-                        <h3 className="card__title">Lada Mustang</h3>
+                        <h3 className="card__title">{name}</h3>
                         <div className="card__desc">
-                            My lovely car I’ve fixed myself. Can share this baby while my driving license is on-hold for driving high. It’s a 1976 Lada Mustang with a custom 4-cylinders engine and off-road suspension. Great for rally and snow drifting. It also has crocodile skin interior with a rare red wood finishing. Good ol’ radio-recivier my grand-dad made in school will give you tons of fun.
-                            The car is in Marakesh right now – would be great if you take it from there, too.
+                           {description}
                         </div>
                     </div>
                     <div className="card__tags">
@@ -48,7 +55,7 @@ function CardItem() {
                     <option value="tel">copy Phone</option>
                 </select>
             </div>
-        </div>
+        </li>
     )
 }
 
