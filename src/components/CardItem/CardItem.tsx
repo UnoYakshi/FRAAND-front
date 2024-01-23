@@ -1,4 +1,5 @@
 import carImg from '../../img/card-img.jpeg';
+import reactLogo from '../../img/react-logo.png';
 import ReactSwipe from 'react-swipe';
 
 interface CardItemProps {
@@ -20,9 +21,9 @@ function CardItem(props: CardItemProps) {
                         swipeOptions={{ continuous: false }}
                         ref={el => (reactSwipeEl = el)}
                     >
-                        <img src={carImg} className='card__img' alt="item photo"/>
-                         <img src={carImg} className='card__img' alt="item photo"/>
-                         <img src={carImg} className='card__img' alt="item photo"/>
+                        <img src={reactLogo} className='card__img' alt="item photo"/>
+                         <img src={reactLogo} className='card__img' alt="item photo"/>
+                         <img src={reactLogo} className='card__img' alt="item photo"/>
                     </ReactSwipe>
                     <div className="card__imgs_btns">
                         <button className='card__imgs_btn card__imgs_prev' onClick={() => reactSwipeEl.prev()}></button>
