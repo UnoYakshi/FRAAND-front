@@ -1,6 +1,5 @@
-import carImg from '../../img/card-img.jpeg';
 import reactLogo from '../../img/react-logo.png';
-import ReactSwipe from 'react-swipe';
+import Carousel from "nuka-carousel";
 
 interface CardItemProps {
     name: string;
@@ -11,25 +10,33 @@ interface CardItemProps {
 function CardItem(props: CardItemProps) {
     const { name } = props;
     const {description} = props;
-    let reactSwipeEl: any;
     return(
         <li className="card">
             <div className="card__container">
                 <div className="card__imgs">
-                     <ReactSwipe
-                        className="card__imgs_carousel"
-                        swipeOptions={{ continuous: false }}
-                        ref={el => (reactSwipeEl = el)}
-                    >
+                        <Carousel renderCenterLeftControls={({ previousSlide }) => (
+                            <button className="card__imgs_prev" onClick={previousSlide}>
+                            </button>
+                        )}
+                        renderCenterRightControls={({ nextSlide }) => (
+                            <button className="card__imgs_next" onClick={nextSlide}>
+                            </button>
+                        )}
+                        renderBottomCenterControls={({ currentSlide, slideCount, goToSlide }) => (
+                            <div className="slider-dots">
+                              {[...Array(slideCount).keys()].map((index) => (
+                                <button
+                                  key={index}
+                                  className={`slider-dots-dot ${currentSlide === index ? 'active' : ''}`}
+                                  onClick={() => goToSlide(index)}
+                                />
+                              ))}
+                            </div>
+                          )}>
                         <img src={reactLogo} className='card__img' alt="item photo"/>
                          <img src={reactLogo} className='card__img' alt="item photo"/>
                          <img src={reactLogo} className='card__img' alt="item photo"/>
-                    </ReactSwipe>
-                    <div className="card__imgs_btns">
-                        <button className='card__imgs_btn card__imgs_prev' onClick={() => reactSwipeEl.prev()}></button>
-                        <button className='card__imgs_btn card__imgs_next' onClick={() => reactSwipeEl.next()}></button>
-                    </div>
-                    {/* <img src={carImg} className='card__img' alt="item photo"/> */}
+                        </Carousel>
                 </div>
                 <div className="card__middle">
                     <div className="card__texts">
