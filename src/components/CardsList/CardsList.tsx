@@ -22,7 +22,6 @@ function CardsList() {
       if(data.length === itemList.length) {
         setHasMoreItems(false);
       }
-      console.log(hasMoreItems)
     } catch (error) {
       console.error('Error fetching data:', error);
     }

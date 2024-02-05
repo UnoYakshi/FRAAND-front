@@ -16,7 +16,7 @@ export const useHttp = () => {
 
             setLoading(false);
             return data;
-        }catch(e) {
+        } catch(e) {
             setLoading(false);
             if (e instanceof Error) {
                 // Check if 'e' is an instance of Error
