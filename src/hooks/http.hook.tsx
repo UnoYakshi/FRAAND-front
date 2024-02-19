@@ -25,7 +25,6 @@ export const useHttp = () => {
       } catch (e) {
         setLoading(false);
         if (e instanceof Error) {
-          // Check if 'e' is an instance of Error
           setError(e.message);
         } else {
           setError("An unknown error occurred");

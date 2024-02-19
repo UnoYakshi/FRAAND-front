@@ -4,7 +4,6 @@ import Carousel from "nuka-carousel";
 interface CardItemProps {
   name: string;
   description: string;
-  // Add other properties as needed
 }
 
 function CardItem(props: CardItemProps) {

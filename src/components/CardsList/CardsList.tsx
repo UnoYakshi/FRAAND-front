@@ -6,13 +6,13 @@ interface Item {
   name: string;
   id: string;
   description: string;
-  // Add other properties as needed
 }
 
 function CardsList() {
+  const paginationOffset = 4;
   const { loading, error, getAllItems } = useApiService();
   const [itemList, setItemList] = useState([]);
-  const [itemsCount, setItemsCount] = useState(4);
+  const [itemsCount, setItemsCount] = useState(paginationOffset);
   const [hasMoreItems, setHasMoreItems] = useState(true);
 
   const fetchData = async () => {
@@ -32,7 +32,7 @@ function CardsList() {
   }, []);
 
   const handleMore = () => {
-    setItemsCount((count) => count + 4);
+    setItemsCount((count) => count + paginationOffset);
   };
 
   useEffect(() => {
