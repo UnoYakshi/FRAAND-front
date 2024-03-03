@@ -4,14 +4,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 const useApiService = () => {
   const { loading, request, error, clearError } = useHttp();
 
-  const getAllItems = async (limit: number) => {
+  const getItemsWithPagination = async (limit: number, skip: number) => {
     const res = await request(
-      `${API_URL}/items/crud/?should_search_in_name=true&should_search_in_description=true&skip=0&limit=${limit}`
+      `${API_URL}/items/crud/?should_search_in_name=true&should_search_in_description=true&skip=${skip}&limit=${limit}`
     );
     return res;
   };
 
-  return { loading, error, getAllItems };
+  return { loading, error, getItemsWithPagination };
 };
 
 export default useApiService;

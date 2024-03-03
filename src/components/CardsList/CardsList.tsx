@@ -10,16 +10,23 @@ interface Item {
 
 function CardsList() {
   const paginationOffset = 4;
-  const { loading, error, getAllItems } = useApiService();
-  const [itemList, setItemList] = useState([]);
+  const { loading, error, getItemsWithPagination } = useApiService();
+  const [itemList, setItemList] = useState<Item[]>([]);
   const [itemsCount, setItemsCount] = useState(paginationOffset);
+  const [itemsSkip, setItemsSkip] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
 
   const fetchData = async () => {
     try {
-      const data = await getAllItems(itemsCount);
-      setItemList(data);
-      if (data.length === itemList.length) {
+      let data: Item[];
+      if (itemsSkip === 0) {
+        data = await getItemsWithPagination(paginationOffset, 0);
+        setItemList(data);
+      } else {
+        data = await getItemsWithPagination(paginationOffset, itemsSkip);
+        setItemList((prevItemList) => [...prevItemList, ...data]);
+      }
+      if (data.length < paginationOffset) {
         setHasMoreItems(false);
       }
     } catch (error) {
@@ -33,6 +40,7 @@ function CardsList() {
 
   const handleMore = () => {
     setItemsCount((count) => count + paginationOffset);
+    setItemsSkip((count) => count + paginationOffset);
   };
 
   useEffect(() => {
