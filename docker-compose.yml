@@ -1,0 +1,12 @@
+services:
+
+  fraand_front:
+    build:
+      context: .
+      args:
+        - REACT_APP_API_BASE_URL = localhost:8000
+      tags:
+        - latest
+    env_file:
+      - .env
+    network_mode: host
