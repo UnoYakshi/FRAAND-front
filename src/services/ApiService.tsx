@@ -11,7 +11,14 @@ const useApiService = () => {
     return res;
   };
 
-  return { loading, error, getItemsWithPagination };
+  const getAllItemsLength = async () => {
+    const res = await request(
+      `${API_URL}/items/crud/?should_search_in_name=true&should_search_in_description=true`
+    );
+    return res.length;
+  };
+
+  return { loading, error, getItemsWithPagination, getAllItemsLength };
 };
 
 export default useApiService;
