@@ -1,7 +1,49 @@
 .cards-list {
-    margin: 0 auto;
-    width: 70%;
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__pagination {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
+    margin-top: 20px;
+  }
+
+  &__arrow {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_img {
+      width: 15px;
+      height: 15px;
+      &_prev {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__page {
+    &_btn {
+      background-color: #fff;
+      width: 30px;
+      height: 30px;
+      padding: 2px;
+      font-size: 14px;
+      border-radius: 3px;
+    }
+  }
+
+  &__ellipsis {
+    color: #fff;
+  }
 }

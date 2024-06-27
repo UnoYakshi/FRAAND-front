@@ -3,6 +3,6 @@
   "name": "Front-end (React, TypeScript) for FRAAND platform.",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000222222",
-  "background_color": "#ffffffdedede"
+  "theme_color": "#000",
+  "background_color": "#fff"
 }
