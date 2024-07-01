@@ -21,7 +21,7 @@ jobs:
       - name: Copy SSH public key
         run: |
           mkdir .ssh/
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > .ssh/id_rsa.pub
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > .ssh/id_rsa.pub
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
