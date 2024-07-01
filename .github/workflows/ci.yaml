@@ -33,6 +33,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: 22
           key: ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}
-          source: "docker-compose.yml"
+          source: "docker-compose.yml, Dockerfile"
           target: "/home/${{ secrets.SSH_USERNAME }}/"
           
