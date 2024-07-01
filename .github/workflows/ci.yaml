@@ -17,7 +17,6 @@ jobs:
       - name: ll
         run: ls -arl 
 
-
       - name: Copy SSH public key
         run: |
           mkdir .ssh/
@@ -28,8 +27,9 @@ jobs:
         with:
           host: ${{ secrets.DIGITALOCEAN_IP }}
           username: ${{ secrets.SSH_USERNAME }}
+          port: 22
           key: ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}
-          password: ${{ secrets.SSH_PASSWORD }}
+#          password: ${{ secrets.SSH_PASSWORD }}
           source: "docker-compose.yml"
           target: "/home/${{ secrets.SSH_USERNAME }}/"
           
