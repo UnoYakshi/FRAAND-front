@@ -1,0 +1,15 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  code_quality:
+    runs-on: ubuntu-latest
+    name: Code Checks
+    container: python:3.9
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
