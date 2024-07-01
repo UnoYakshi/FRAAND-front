@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.DIGITALOCEAN_PORT }}
           key: ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}
-          source: "docker-compose.yml, Dockerfile, src/, public/, package-*.json, tsconfig.json, postcss.config.js, .env"
+          source: "docker-compose.yml, Dockerfile, src/, public/, package*.json, tsconfig.json, postcss.config.js, .env"
           target: "/home/${{ secrets.SSH_USERNAME }}/"
           
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
