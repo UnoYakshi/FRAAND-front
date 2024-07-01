@@ -16,6 +16,8 @@ jobs:
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
-          echo ${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }} > id_rsa.pub
-          scp -i id_rsa.pub -r docker-compose.yml ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }}:/path/to/docker-compose.yml
+          echo ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }} > id_rsa
+          pwd
+          ls -arl
+          scp -i id_rsa -r docker-compose.yml ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }}:/path/to/docker-compose.yml
           ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'cd /path/to && docker-compose up -d'
