@@ -2,7 +2,7 @@ name: Code Quality
 
 on:
   push:
-    branches: [ master ]
+    branches: [ docker-compose ]
 
 jobs:
   code_quality:
@@ -13,3 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
+        run: |
+          scp -r docker-compose.yml ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }}:/path/to/docker-compose.yml
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'cd /path/to && docker-compose up -d'
