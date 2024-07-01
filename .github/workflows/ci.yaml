@@ -17,15 +17,14 @@ jobs:
       - name: Copy SSH public key
         run: |
           mkdir ~/.ssh/ && chmod 700 ~/.ssh/
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && cat ~/.ssh/id_rsa
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > ~/.ssh/id_rsa.pub
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
 
       - name: Add DigitalOcean to known hosts
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts          
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
-          ssh -vvv -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
+          ssh -vvv -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
@@ -34,7 +33,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: 22
           key: ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}
-#          password: ${{ secrets.SSH_PASSWORD }}
           source: "docker-compose.yml"
           target: "/home/${{ secrets.SSH_USERNAME }}/"
           
