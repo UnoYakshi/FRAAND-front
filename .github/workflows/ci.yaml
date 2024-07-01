@@ -5,7 +5,7 @@ on:
     branches: [ docker-compose ]
 
 jobs:
-  code_quality:
+  deploy:
     runs-on: ubuntu-latest
     name: Code Checks
     container: python:3.9
@@ -16,11 +16,12 @@ jobs:
 
       - name: Copy SSH private key
         run: |
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-          echo ${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }} > id_rsa
+          mkdir .ssh/
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > .ssh/id_rsa && chmod 600 .ssh/id_rsa
+          echo ${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }} > .ssh/id_rsa
 
       - name: Add DigitalOcean to known hosts
-        run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> .ssh/known_hosts
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
