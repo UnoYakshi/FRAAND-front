@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Code Checks
-    container: python:3.9
+    container: python:3.11
 
     steps:
       - name: Checkout code
