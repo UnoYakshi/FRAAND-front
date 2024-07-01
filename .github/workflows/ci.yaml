@@ -17,15 +17,15 @@ jobs:
       - name: Copy SSH public key
         run: |
           mkdir .ssh/
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > .ssh/id_rsa
-          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > .ssh/id_rsa.pub
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > .ssh/id_ed25519 
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > .ssh/id_ed25519.pub
 
       - name: Add DigitalOcean to known hosts
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> .ssh/known_hosts          
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
-          ssh -i .ssh/id_rsa -o UserKnownHostsFile=.ssh/known_hosts -tt ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
+          ssh -i .ssh/id_ed25519 -o UserKnownHostsFile=.ssh/known_hosts -tt ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
