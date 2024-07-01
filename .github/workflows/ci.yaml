@@ -1,4 +1,4 @@
-name: Code Quality
+name: Deploy to Nether Land
 
 on:
   push:
@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Copy SSH public key
+        run: echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa.pub
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
