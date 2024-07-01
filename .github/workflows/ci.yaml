@@ -16,13 +16,13 @@ jobs:
 
       - name: Copy SSH private key
         run: |
-        	echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-            echo ${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }} > id_rsa
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          echo ${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }} > id_rsa
 
       - name: Add DigitalOcean to known hosts
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
-        	scp -r docker-compose.yml ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }}:/home/${{ secrets.SSH_USERNAME }}/docker-compose.yml
+          scp -r docker-compose.yml ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }}:/home/${{ secrets.SSH_USERNAME }}/docker-compose.yml
           
