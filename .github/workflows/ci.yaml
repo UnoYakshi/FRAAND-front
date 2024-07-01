@@ -23,9 +23,9 @@ jobs:
       - name: Add DigitalOcean to known hosts
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts          
 
-#      - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
-#        run: |
-#          ssh -v -i .ssh/id_rsa -o UserKnownHostsFile=.ssh/known_hosts ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
+      - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
+        run: |
+          ssh -vvv -i .ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
