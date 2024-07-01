@@ -17,6 +17,7 @@ jobs:
       - name: Copy SSH public key
         run: |
           mkdir .ssh/
+          echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > .ssh/id_rsa
           echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > .ssh/id_rsa.pub
 
       - name: Add DigitalOcean to known hosts
@@ -24,7 +25,7 @@ jobs:
 
       - name: SSH into DigitalOcean droplet and deploy Docker Compose stack
         run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl .'          
+          ssh -i .ssh/id_rsa -o UserKnownHostsFile=.ssh/known_hosts -tt ${{ secrets.SSH_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} 'ls -arl . && touch test'          
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
