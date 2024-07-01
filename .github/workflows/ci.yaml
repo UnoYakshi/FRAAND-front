@@ -16,7 +16,7 @@ jobs:
 
       - name: Copy SSH public key
         run: |
-          mkdir ~/.ssh/
+          mkdir ~/.ssh/ && chmod 700 ~/.ssh/
           echo "${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
           echo "${{ secrets.NL_FRONT_DEPLOYMENT_PUBLIC_KEY }}" > ~/.ssh/id_rsa.pub
 
