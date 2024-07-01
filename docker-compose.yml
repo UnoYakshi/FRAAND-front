@@ -5,8 +5,8 @@ services:
       context: .
       args:
         - REACT_APP_API_BASE_URL = localhost:8000
-      tags:
-        - latest
+#      tags:
+#        - latest
     env_file:
       - .env
     network_mode: host
