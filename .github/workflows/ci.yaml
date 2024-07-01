@@ -31,7 +31,7 @@ jobs:
         with:
           host: ${{ secrets.DIGITALOCEAN_IP }}
           username: ${{ secrets.SSH_USERNAME }}
-          port: 22
+          port: ${{ secrets.DIGITALOCEAN_PORT }}
           key: ${{ secrets.NL_FRONT_DEPLOYMENT_PRIVATE_KEY }}
           source: "docker-compose.yml, Dockerfile"
           target: "/home/${{ secrets.SSH_USERNAME }}/"
