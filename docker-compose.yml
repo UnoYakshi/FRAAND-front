@@ -4,9 +4,11 @@ services:
     build:
       context: .
       args:
-        - REACT_APP_API_BASE_URL = localhost:8000
-#      tags:
-#        - latest
+        - REACT_APP_API_BASE_URL = $REACT_APP_API_BASE_URL
+      tags:
+        - latest
     env_file:
       - .env
-    network_mode: host
+    labels:
+      caddy: fraand.org
+      caddy.reverse_proxy: "{{upstreams $REACT_DOCKER_PORT}}"
