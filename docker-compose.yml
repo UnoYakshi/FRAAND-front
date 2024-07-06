@@ -9,6 +9,12 @@ services:
         - latest
     env_file:
       - .env
+    networks:
+      - caddy
     labels:
       caddy: fraand.org
       caddy.reverse_proxy: "{{upstreams $REACT_DOCKER_PORT}}"
+
+networks:
+  caddy:
+    external: true
