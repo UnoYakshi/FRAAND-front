@@ -12,8 +12,8 @@ services:
     networks:
       - caddy
     labels:
-      caddy: fraand.org
-      caddy.reverse_proxy: "{{upstreams $REACT_DOCKER_PORT}}"
+      caddy: app.fraand.org
+      caddy.reverse_proxy: "{{upstreams 80}}"
 
 networks:
   caddy:
