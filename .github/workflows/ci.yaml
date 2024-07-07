@@ -23,7 +23,7 @@ jobs:
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts
 
       - name: Add Envvar file to .env
-        run: echo ${{ secrets.REACT_APP_API_BASE_URL }} >> .env
+        run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> .env
 
       - name: copy files via ssh
         uses: appleboy/scp-action@v0.1.7
