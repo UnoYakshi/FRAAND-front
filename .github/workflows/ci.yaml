@@ -23,7 +23,7 @@ jobs:
         run: ssh-keyscan ${{ secrets.DIGITALOCEAN_IP }} >> ~/.ssh/known_hosts
 
       - name: Add Envvar file to .env
-        run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> .env
+        run: echo "REACT_APP_API_BASE_URL=${{ env.REACT_APP_API_BASE_URL }}" >> .env
 
       - name: Build Docker image
         run: docker compose -f docker-compose.yml build -t fraand_front:latest
