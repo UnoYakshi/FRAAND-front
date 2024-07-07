@@ -25,6 +25,20 @@ jobs:
       - name: Add Envvar file to .env
         run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> .env
 
+      - name: Build Docker image
+        run: docker compose -f docker-compose.yml build -t fraand_front:latest
+
+      - name: Install DigitalOcean CLI (doctl)
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        
+      - name: Log in to DigitalOcean Container Registry (DOCR)
+        run: doctl registry login --expiry-seconds 600
+        
+      - name: Push the image to the DOCR
+        run: docker compose -f docker-compose.yml push
+
       - name: copy files via ssh
         uses: appleboy/scp-action@v0.1.7
         with:
