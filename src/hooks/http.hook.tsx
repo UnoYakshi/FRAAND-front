@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useCallback, useState } from "react";
 
 export const useHttp = () => {
@@ -8,20 +9,23 @@ export const useHttp = () => {
     async (
       url: string,
       method = "GET",
-      body = null,
-      headers = { "Content-type": "application/JSON" }
+      body: any = null,
+      headers: {} = { "Content-type": "application/JSON" },
+      withCredentials = false
     ) => {
       setLoading(true);
 
       try {
-        const response = await fetch(url, { method, body, headers });
-        if (!response.ok) {
-          throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-        }
-        const data = await response.json();
+        const response = await axios({
+          url,
+          method,
+          data: body,
+          headers,
+          withCredentials,
+        });
 
         setLoading(false);
-        return data;
+        return response.data;
       } catch (e) {
         setLoading(false);
         if (e instanceof Error) {
