@@ -1,0 +1,20 @@
+services:
+
+  fraand_front:
+    build:
+      context: .
+      args:
+        - REACT_APP_API_BASE_URL = $REACT_APP_API_BASE_URL
+      tags:
+        - latest
+    env_file:
+      - .env
+    networks:
+      - caddy
+    labels:
+      caddy: app.fraand.org
+      caddy.reverse_proxy: "{{upstreams 80}}"
+
+networks:
+  caddy:
+    external: true
